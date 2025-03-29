@@ -29,6 +29,7 @@ int main(void)
             ClearBackground(BLACK);
             DrawRectangleRec(sky_rec,SKYBLUE);
             DrawRectangleRec(ground_rec,GREEN);
+            DrawText("Brushback",screenWidth * 0.25, screenHeight * 0.10,52,BLACK);
 
 
 
