@@ -1,51 +1,46 @@
+// Includes
 #include "raylib.h"
+#include "time.h"
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
+// Main
 int main(void)
 {
-    // Initialization
-    //--------------------------------------------------------------------------------------
+    // Initialize window
     const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenHeight = 600;
+    const char windowName[] = "Brushback";
+    InitWindow(screenWidth, screenHeight, windowName);
 
-    InitWindow(screenWidth, screenHeight, "raylib [<module>] example - <name>");
-
-    // TODO: Load resources / Initialize variables at this point
-
+    // Initialize variables
     SetTargetFPS(60);
-    //--------------------------------------------------------------------------------------
+    SetRandomSeed(time(NULL));
+    bool first_draw = true;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update variables / Implement example logic at this point
-        //----------------------------------------------------------------------------------
+        Rectangle sky_rec = {0,0,(float) screenWidth, (float) 0.60 * screenHeight};
+        Rectangle ground_rec = {0,0.60 * screenHeight,(float) screenWidth, (float) 0.40 * screenHeight};
 
         // Draw
-        //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLACK);
+            DrawRectangleRec(sky_rec,SKYBLUE);
+            DrawRectangleRec(ground_rec,GREEN);
 
-            // TODO: Draw everything that requires to be drawn at this point:
 
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);  // Example
 
         EndDrawing();
         //----------------------------------------------------------------------------------
+        first_draw = false;
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
 
-    // TODO: Unload all loaded resources at this point
-
     CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
 
     return 0;
 }
