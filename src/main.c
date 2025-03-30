@@ -1,7 +1,6 @@
 // Includes
+#include "brushback.h"
 #include "raylib.h"
-#include "time.h"
-
 // Main
 int main(void)
 {
@@ -10,11 +9,17 @@ int main(void)
     const int screenHeight = 600;
     const char windowName[] = "Brushback";
     InitWindow(screenWidth, screenHeight, windowName);
+    SetRandomSeed(time(NULL));
+    // Current run of game
+    struct currentGame currentGame = {
+        (int) GetRandomValue(MIN_GAME_ID,MAX_GAME_ID),
+        time(NULL),
+        TITLE
+    };
 
     // Initialize variables
     SetTargetFPS(60);
     SetRandomSeed(time(NULL));
-    bool first_draw = true;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -35,7 +40,6 @@ int main(void)
 
         EndDrawing();
         //----------------------------------------------------------------------------------
-        first_draw = false;
     }
 
     // De-Initialization
